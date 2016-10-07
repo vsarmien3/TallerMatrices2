@@ -85,7 +85,7 @@ public class Helper {
         }
     }
     
-    public static void letraK(JTable tabla1, JTable tabla2) {
+    public static void LetraK(JTable tabla1, JTable tabla2) {
         int nf, nc, aux;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -115,7 +115,7 @@ public class Helper {
         }
     }
     
-    public static void letraW(JTable tabla1, JTable tabla2) {
+    public static void LetraW(JTable tabla1, JTable tabla2) {
         int nf, nc, aux;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -132,7 +132,7 @@ public class Helper {
         }
     }
     
-    public static void letraQ(JTable tabla1, JTable tabla2) {
+    public static void LetraQ(JTable tabla1, JTable tabla2) {
         int nf, nc, aux, lq;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -147,7 +147,7 @@ public class Helper {
         }
     }
     
-    public static void letraJ(JTable tabla1, JTable tabla2) {
+    public static void LetraJ(JTable tabla1, JTable tabla2) {
         int nf, nc, aux;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -161,7 +161,21 @@ public class Helper {
         }
     }
     
-    public static void letraR(JTable tabla1, JTable tabla2) {
+    public static void LetraG(JTable tabla1, JTable tabla2) {
+        int nf, nc, aux;
+        nf = tabla1.getColumnCount();
+        nc = tabla1.getRowCount();
+        for (int i = 0; i < nf; i++) {
+            for (int j = 0; j < nc; j++) {
+                aux = (int) tabla1.getValueAt(i, j);
+                if (i == 0 || i == nf / 2 || i == nf - 1 || j == 0 || (j == nc - 1 && i >= nf / 2) || (j == nc - 1 && i <= nf / 4)) {
+                    tabla2.setValueAt(aux, i, j);
+                }
+            }
+        }
+    }
+    
+    public static void LetraR(JTable tabla1, JTable tabla2) {
         int nf, nc, aux;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -175,7 +189,7 @@ public class Helper {
         }
     }
     
-    public static void figura1(JTable tabla1, JTable tabla2){
+    public static void Figura1(JTable tabla1, JTable tabla2){
         int nf, nc;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -187,7 +201,7 @@ public class Helper {
         }
     }
     
-    public static void figura2(JTable tabla1, JTable tabla2){
+    public static void Figura2(JTable tabla1, JTable tabla2){
         int nf, nc;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -199,7 +213,7 @@ public class Helper {
         }
     }
     
-    public static void figura3(JTable tabla1, JTable tabla2) {
+    public static void Figura3(JTable tabla1, JTable tabla2) {
         int nf, nc, aux;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();
@@ -213,7 +227,7 @@ public class Helper {
         }
     }
     
-    public static void figura4(JTable tabla1, JTable tabla2) {
+    public static void Figura4(JTable tabla1, JTable tabla2) {
         int nf, nc, aux, auxdos;
         nf = tabla1.getRowCount();
         nc = tabla1.getColumnCount();

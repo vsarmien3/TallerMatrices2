@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package interfaz;
-
+import clases.Helper;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USUARIO
@@ -15,7 +18,12 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
+        
         initComponents();
+        JButton botonesH[] = {cmdCrear, cmdLimpiar};
+        JButton botonesD[] = {cmdLlenadoAutomatico, cmdLlenadoManual, cmdOperacion};
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
     }
 
     /**
@@ -176,20 +184,39 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-        DefaultTableModel tm, tm2;
-        int nf, nc;
-        tm = (DefaultTableModel) tblMatrizInicial.getModel();
-        tm2 = (DefaultTableModel) tblMatrizResultante.getModel();
-
-        nf = Integer.parseInt(txtNumeroFilas.getText());
-        nc = Integer.parseInt(txtNumeroColumnas.getText());
-
+     
+        if (txtNumeroFilas.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el número de filas", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroFilas.selectAll();
+            txtNumeroFilas.requestFocusInWindow();
+            
+        }if (txtNumeroColumnas.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese el número de columnas", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroColumnas.selectAll();
+            txtNumeroColumnas.requestFocusInWindow();
+        }else {
+                DefaultTableModel tm, tm2;
+                int nf, nc;
+                nf = Integer.parseInt(txtNumeroFilas.getText());
+                nc = Integer.parseInt(txtNumeroColumnas.getText());
+                tm = (DefaultTableModel) tblMatrizInicial.getModel();
+                tm2 = (DefaultTableModel) tblMatrizResultante.getModel();
+                
+                if (nf >= 13 && nc >= 13) {
+                JOptionPane.showMessageDialog(this, "La matriz tiene una maxima dimension de 13x13, por favor intente de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+                Helper.tablaPorDefecto(tblMatrizInicial);
+                Helper.tablaPorDefecto(tblMatrizResultante);
+                txtNumeroFilas.setText("");
+                txtNumeroColumnas.setText("");
+                txtNumeroFilas.requestFocusInWindow();
+                }
+        
         tm.setRowCount(nf);
         tm.setColumnCount(nc);
 
         tm2.setRowCount(nf);
         tm2.setColumnCount(nc);
-
+        }
         JButton botonesH[] = {cmdLlenadoAutomatico, cmdLlenadoManual, cmdLimpiar};
         JButton botonesD[] = {cmdCrear, cmdOperacion};
         Helper.habilitarBotones(botonesH);
@@ -277,7 +304,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdLimpiarActionPerformed
 
     private void cmdOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionActionPerformed
-        int op, nf, nc, pares, aux;
+        int op, nf, nc, aux;
 
         op = cmbOperaciones.getSelectedIndex();
         nf = tblMatrizInicial.getRowCount();
@@ -286,35 +313,42 @@ public class Principal extends javax.swing.JFrame {
         Helper.limpiarTabla(tblMatrizResultante);
         switch (op) {
             case 0:
-            pares = Helper.cantidadNumerosPares(tblMatrizInicial);
-            txtResultado.setText("Cantidad de Números pares es: " + pares);
+            Helper.LetraB(tblMatrizInicial, tblMatrizResultante);
             break;
             case 1:
-            Helper.numerosPares(tblMatrizInicial, tblMatrizResultante);
+            Helper.LetraK(tblMatrizInicial, tblMatrizResultante);
             break;
             case 2:
-
-            Helper.diagonalPrincipal(tblMatrizInicial, tblMatrizResultante);
-
+            Helper.LetraM(tblMatrizInicial, tblMatrizResultante);
             break;
             case 3:
-            Helper.letraC(tblMatrizInicial, tblMatrizResultante);
-
+            Helper.LetraW(tblMatrizInicial, tblMatrizResultante);
             break;
             case 4:
-
-            Helper.letraH(tblMatrizInicial, tblMatrizResultante);
-
+            Helper.LetraQ(tblMatrizInicial, tblMatrizResultante);
             break;
-
             case 5:
-
-            txtResultado.setText(Helper.recorridoUno(tblMatrizInicial));
+            Helper.LetraJ(tblMatrizInicial, tblMatrizResultante);
             break;
             case 6:
-
-            txtResultado.setText(Helper.recorridoDos(tblMatrizInicial));
+            Helper.LetraG(tblMatrizInicial, tblMatrizResultante);
             break;
+            case 7:
+            Helper.LetraR(tblMatrizInicial, tblMatrizResultante);
+            break;
+            case 8:
+            Helper.Figura1(tblMatrizInicial, tblMatrizResultante);
+            break;
+            case 9:
+            Helper.Figura2(tblMatrizInicial, tblMatrizResultante);
+            break;
+            case 10:
+            Helper.Figura3(tblMatrizInicial, tblMatrizResultante);
+            break;
+            case 11:
+            Helper.Figura4(tblMatrizInicial, tblMatrizResultante);
+            break;
+            
         }
 
         JButton botonesH[] = {cmdOperacion, cmdLimpiar};
